@@ -1,4 +1,4 @@
-package client.CursoServicio;
+package client.ventaServicio;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,32 +8,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 
-import client.Curso.CursosPrincipal;
-import client.cursoDominio.CursoDTO;
-import client.cursoUtil.ResponseDTO;
-import feign.Response;
+import client.Venta.VentaPrincipal;
+import client.ventaDominio.VentaDTO;
+import client.ventaUtil.ResponseDTO;
+
 
 @Service
-public class CursoServicio {
+public class VentaServicio {
 	
 	@Autowired
+	VentaPrincipal ventabd;
 	
-	CursosPrincipal cursobd;
 	
 	public Map<String, Object>listar()
 	{
 		 Map<String,Object>model = new HashMap<>();	 
 		try 
 		{
-			 	ResponseDTO cursoList = cursobd.listar();
-			 	model.put("cursoList", cursoList.getRespuesta());	
+			 	ResponseDTO ventaList = ventabd.listar();
+			 	model.put("ventaList", ventaList.getRespuesta());	
 		} 
 		 
 		catch (Exception e) 
 		{
 			model.put("err", "error");
 			model.put("msg", "Error al extraer los datos, si el error persiste contacte al admin");
-			e.printStackTrace();
+		e.printStackTrace();
 		}	 
 		return model;
 	}
@@ -41,12 +41,12 @@ public class CursoServicio {
 	
 	
 	
-	public Map<String, Object>crear(CursoDTO curso)
+	public Map<String, Object>crear(VentaDTO venta)
 	{
 		 Map<String,Object>model = new HashMap<>();
 		try 
 		{
-			ResponseDTO res=  cursobd.crear(curso);		
+			ResponseDTO res=  ventabd.crear(venta);		
 		} 
 		catch(HttpStatusCodeException e) 
 		{
@@ -57,14 +57,14 @@ public class CursoServicio {
 	}
 
 	
-
 	
-	public Map<String, Object>actualizar(CursoDTO curso)
+	
+	public Map<String, Object>actualizar(VentaDTO venta)
 	{	
 		Map<String,Object>model = new HashMap<>();	 
 		try 
 		{
-			ResponseDTO res = cursobd.actualizar(curso);
+			ResponseDTO res = ventabd.actualizar(venta);
 		} 
 		catch (HttpStatusCodeException e) 
 		{
@@ -82,7 +82,7 @@ public class CursoServicio {
 		Map<String,Object>model = new HashMap<>(); 
 		try 
 		{	
-			cursobd.borrar(id);
+			ventabd.borrar(id);
 		} 
 		catch (HttpStatusCodeException e) 
 		{
@@ -91,7 +91,5 @@ public class CursoServicio {
 		}
 		return model;
 	}
-
-	
 	
 }

@@ -1,4 +1,4 @@
-package client.cursoControlador;
+package client.ventaControlador;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,24 +12,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import client.CursoServicio.CursoServicio;
-import client.cursoDominio.CursoDTO;
+import client.ventaServicio.VentaServicio;
+import client.ventaDominio.VentaDTO;
+
 
 @Controller
-@RequestMapping("/curso")
+@RequestMapping("/venta")
 
-public class CursoControlador {
+public class VentaControlador {
+
 	@Autowired
-	CursoServicio servicioCurso;
+	VentaServicio servicioVenta;
 	
 	
 	@GetMapping
 	public String list(Model  vista) 
 	{
 		Map<String , Object> modelo= new HashMap<>();
-		modelo=(servicioCurso.listar());
-		vista.addAttribute( "cursos", modelo.get("cursoList"));
-		return "Curso";	
+		modelo=(servicioVenta.listar());
+		vista.addAttribute( "ventas", modelo.get("ventaList"));
+		return "Venta";	
 	}
 	
 	
@@ -37,14 +39,14 @@ public class CursoControlador {
 	@GetMapping("/crear")
 	public String redirectcrear(Model model) 
 	{
-		model.addAttribute("crearCurso", new CursoDTO());
-		return "CrearCurso";
+		model.addAttribute("crearVenta", new VentaDTO());
+		return "CrearVenta";
 	}
 	@PostMapping
-	public String crear(@ModelAttribute("crearCurso")CursoDTO curso) 
+	public String crear(@ModelAttribute("crearVenta")VentaDTO venta) 
 	{
-		servicioCurso.crear(curso);
-		return "redirect:/curso";
+		servicioVenta.crear(venta);
+		return "redirect:/venta";
 	}
 	
 	
@@ -52,25 +54,23 @@ public class CursoControlador {
 	@GetMapping("/actualizar")
 	public String redirectact(Model model)
 	{
-		model.addAttribute("actCurso", new CursoDTO());
-		return "ActCurso";
+		model.addAttribute("actVenta", new VentaDTO());
+		return "ActVenta";
 	}
 	@PostMapping("/update")
-	public String actualizar(@ModelAttribute ("actCurso") CursoDTO curso)
+	public String actualizar(@ModelAttribute ("actVenta") VentaDTO venta)
 	{
-		servicioCurso.actualizar(curso);
-		return "redirect:/curso";
+		servicioVenta.actualizar(venta);
+		return "redirect:/venta";
 	}
-	
 	
 	
 	
 	@PostMapping("/delete/{id}")
 	public String borrar(@PathVariable("id") Long id) 
 	{
-		servicioCurso.eliminar(id);
-		return  "redirect:/curso";
+		servicioVenta.eliminar(id);
+		return  "redirect:/venta";
 	}
-	
 
 }

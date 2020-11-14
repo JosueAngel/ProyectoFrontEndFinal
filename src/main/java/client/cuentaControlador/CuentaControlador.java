@@ -1,4 +1,4 @@
-package client.cursoControlador;
+package client.cuentaControlador;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,54 +12,59 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import client.CursoServicio.CursoServicio;
-import client.cursoDominio.CursoDTO;
+import client.cuentaServicio.CuentaServicio;
+import client.cuentaDominio.CuentaDTO;
+
 
 @Controller
-@RequestMapping("/curso")
+@RequestMapping("/cuenta")
 
-public class CursoControlador {
+public class CuentaControlador {
+
 	@Autowired
-	CursoServicio servicioCurso;
+	CuentaServicio servicioCuenta;
+	
 	
 	
 	@GetMapping
 	public String list(Model  vista) 
 	{
 		Map<String , Object> modelo= new HashMap<>();
-		modelo=(servicioCurso.listar());
-		vista.addAttribute( "cursos", modelo.get("cursoList"));
-		return "Curso";	
+		modelo=(servicioCuenta.listar());
+		vista.addAttribute( "cuentas", modelo.get("cuentaList"));
+		return "Cuenta";	
 	}
+	
 	
 	
 	
 	@GetMapping("/crear")
 	public String redirectcrear(Model model) 
 	{
-		model.addAttribute("crearCurso", new CursoDTO());
-		return "CrearCurso";
+		model.addAttribute("crearCuenta", new CuentaDTO());
+		return "CrearCuenta";
 	}
 	@PostMapping
-	public String crear(@ModelAttribute("crearCurso")CursoDTO curso) 
+	public String crear(@ModelAttribute("crearCuenta")CuentaDTO cuenta) 
 	{
-		servicioCurso.crear(curso);
-		return "redirect:/curso";
+		servicioCuenta.crear(cuenta);
+		return "redirect:/cuenta";
 	}
+	
 	
 	
 	
 	@GetMapping("/actualizar")
 	public String redirectact(Model model)
 	{
-		model.addAttribute("actCurso", new CursoDTO());
-		return "ActCurso";
+		model.addAttribute("actCuenta", new CuentaDTO());
+		return "ActCuenta";
 	}
 	@PostMapping("/update")
-	public String actualizar(@ModelAttribute ("actCurso") CursoDTO curso)
+	public String actualizar(@ModelAttribute ("actCuenta") CuentaDTO cuenta)
 	{
-		servicioCurso.actualizar(curso);
-		return "redirect:/curso";
+		servicioCuenta.actualizar(cuenta);
+		return "redirect:/cuenta";
 	}
 	
 	
@@ -68,9 +73,7 @@ public class CursoControlador {
 	@PostMapping("/delete/{id}")
 	public String borrar(@PathVariable("id") Long id) 
 	{
-		servicioCurso.eliminar(id);
-		return  "redirect:/curso";
+		servicioCuenta.eliminar(id);
+		return  "redirect:/cuenta";
 	}
-	
-
 }

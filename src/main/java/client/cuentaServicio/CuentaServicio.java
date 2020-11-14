@@ -1,4 +1,4 @@
-package client.CursoServicio;
+package client.cuentaServicio;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,27 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 
-import client.Curso.CursosPrincipal;
-import client.cursoDominio.CursoDTO;
-import client.cursoUtil.ResponseDTO;
-import feign.Response;
+import client.Cuenta.CuentaPrincipal;
+import client.cuentaDominio.CuentaDTO;
+import client.cuentaUtil.ResponseDTO;
+
 
 @Service
-public class CursoServicio {
-	
+public class CuentaServicio {
+
 	@Autowired
-	
-	CursosPrincipal cursobd;
+	CuentaPrincipal cuentabd;
 	
 	public Map<String, Object>listar()
 	{
 		 Map<String,Object>model = new HashMap<>();	 
 		try 
 		{
-			 	ResponseDTO cursoList = cursobd.listar();
-			 	model.put("cursoList", cursoList.getRespuesta());	
-		} 
-		 
+			ResponseDTO cuentaList=cuentabd.listar();
+		 	model.put("cuentaList", cuentaList.getRespuesta());
+		}
 		catch (Exception e) 
 		{
 			model.put("err", "error");
@@ -40,13 +38,12 @@ public class CursoServicio {
 	
 	
 	
-	
-	public Map<String, Object>crear(CursoDTO curso)
+	public Map<String, Object>crear(CuentaDTO cuenta)
 	{
 		 Map<String,Object>model = new HashMap<>();
 		try 
 		{
-			ResponseDTO res=  cursobd.crear(curso);		
+			ResponseDTO res= cuentabd.crear(cuenta);		
 		} 
 		catch(HttpStatusCodeException e) 
 		{
@@ -55,16 +52,15 @@ public class CursoServicio {
 		}
 		return model;
 	}
-
 	
-
 	
-	public Map<String, Object>actualizar(CursoDTO curso)
+	
+	public Map<String, Object>actualizar(CuentaDTO cuenta)
 	{	
 		Map<String,Object>model = new HashMap<>();	 
 		try 
 		{
-			ResponseDTO res = cursobd.actualizar(curso);
+			ResponseDTO res = cuentabd.actualizar(cuenta);
 		} 
 		catch (HttpStatusCodeException e) 
 		{
@@ -73,7 +69,6 @@ public class CursoServicio {
 		}
 		return model;
 	}
-	
 	
 	
 	
@@ -82,7 +77,7 @@ public class CursoServicio {
 		Map<String,Object>model = new HashMap<>(); 
 		try 
 		{	
-			cursobd.borrar(id);
+			cuentabd.borrar(id);
 		} 
 		catch (HttpStatusCodeException e) 
 		{
@@ -91,7 +86,4 @@ public class CursoServicio {
 		}
 		return model;
 	}
-
-	
-	
 }

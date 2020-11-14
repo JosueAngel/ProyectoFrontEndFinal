@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import client.cursoDominio.CursoDTO;
 import client.cursoUtil.ResponseDTO;
 
-@FeignClient
+@FeignClient(url="http://192.168.56.1:8090", name="curso")
 public interface CursosPrincipal {
 	
-	@GetMapping( path= "/curso" , produces="application/json")
+	@GetMapping(path="/curso", produces="application/json")
 	ResponseDTO listar();
 	
-	@PostMapping( path= "/curso" , produces="application/json")
+	@PostMapping(path="/curso", produces="application/json")
 	ResponseDTO crear(@RequestBody CursoDTO curso);
 	
-	@PutMapping ( path= "/curso" , produces="application/json")
+	@PutMapping(path="/curso", produces="application/json")
 	ResponseDTO actualizar(@RequestBody CursoDTO Curso);
 	
-	@DeleteMapping ( path= "/curso/{Id_Curso}" , produces="application/json")
-	ResponseDTO borrar(@RequestParam Long Id_Curso);
+	@DeleteMapping(path="/curso/{id}" , produces="application/json")
+	ResponseDTO borrar(@RequestParam Long id);
 	
 	
 	

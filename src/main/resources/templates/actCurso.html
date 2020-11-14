@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Curso</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+	<body>
+		<div class="container-fluid">
+			<form method="post" th:action="@{/curso/update}" th:object="${actCurso}">
+				
+				<h1 class="pull-left">Actualizacion de cursos</h1>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<div class="form-group">
+					<label for="idCurso">Id_Curso</label>
+					<input type="text" class="form-control" id="id" aria-describedby="emailHelp" placeholder="Ingresar id del curso" th:field="*{idCurso}"/>				
+				</div>
+				
+				<div class="form-group">
+					<label for="nombreCurso">Nombre_Curso</label>
+					<input type="text" class="form-control" id="nombreC" aria-describedby="emailHelp" placeholder="Ingresar nombre del curso" th:field="*{nombreCurso}"/>				
+				</div>
+				
+				<div class="form-group">
+					<label for="nombreProfesor">Nombre_Profesor</label>
+					<input type="text" class="form-control" id="nombreP" aria-describedby="emailHelp" placeholder="Ingresar nombre del profesor" th:field="*{nombreProfesor}"/>				
+				</div>
+				
+				<div class="form-group">
+					<label for="descripcionCurso" >Descripcion_Curso</label>
+					<input type="text" class="form-control" id="descripcionC" aria-describedby="emailHelp" placeholder="Ingresar descripcion del curso" th:field="*{descripcionCurso}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="fechaCreacion" >Fecha_Creacion</label>
+					<input type="text" class="form-control" id="fechaCrea" aria-describedby="emailHelp" placeholder="Fecha de creacion del curso" th:field="*{fechaCreacion}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="precioCurso" >Precio_Curso</label>
+					<input type="text" class="form-control" id="precioC" aria-describedby="emailHelp" placeholder="Precio de curso" th:field="*{precioCurso}"/>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Actualizar</button>	
+			
+			</form>
+		</div>
+	</body>
+</html>

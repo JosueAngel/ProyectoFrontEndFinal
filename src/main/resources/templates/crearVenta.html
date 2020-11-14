@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Venta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+	<body>
+		<div class="container-fluid">
+			<form method="post" th:action="@{/venta}" th:object="${crearVenta}">
+				
+				<h1 class="pull-left">Creacion de ventas</h1>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<div class="form-group">
+					<label for="nombreCliente">Nombre_Cliente</label>
+					<input type="text" class="form-control" id="nombreCli" aria-describedby="emailHelp" placeholder="Ingresar nombre del cliente" th:field="*{nombreCliente}"/>				
+				</div>
+				
+				<div class="form-group">
+					<label for="fechaVenta">Fecha_Venta</label>
+					<input type="text" class="form-control" id="fechaV" aria-describedby="emailHelp" placeholder="Ingresar fecha de la venta" th:field="*{fechaVenta}"/>				
+				</div>
+				
+				<div class="form-group">
+					<label for="cantidadVenta" >Cantidad</label>
+					<input type="text" class="form-control" id="cantidadV" aria-describedby="emailHelp" placeholder="Ingresar cantidad de la venta" th:field="*{cantidadVenta}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="tipoComprobante" >Tipo_Comprobante</label>
+					<input type="text" class="form-control" id="comprobante" aria-describedby="emailHelp" placeholder="Ingresar tipo de comprobante" th:field="*{tipoComprobante}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="totalVenta" >Total_Venta</label>
+					<input type="text" class="form-control" id="total" aria-describedby="emailHelp" placeholder="Ingresar total de la venta" th:field="*{totalVenta}"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="estadoVenta" >Estado_Venta</label>
+					<input type="text" class="form-control" id="estadoV" aria-describedby="emailHelp" placeholder="Ingresar estado de la venta" th:field="*{estadoVenta}"/>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Agregar</button>				
+
+			</form>
+		</div>
+	</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Curso</title>
+    <title>Venta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -16,19 +16,19 @@
   				<div class="col-lg-12">
   					<div class="clearfix">
   							
-  						<h1 class="pull-left">Cursos de Programacion</h1>
+  						<h1 class="pull-left">Venta de Cursos</h1>
   							<br/>
   							<br/>
   							<br/>
   							<div class="pull-right top-page-ui">
-  								<a href="/curso/crear" th:href="@{'/curso/crear'}" class="btn btn-primary pull-right">
-  									<i class="glyphicon glyphicon-plus">AgregarCurso</i>
+  								<a href="/venta/crear" th:href="@{'/venta/crear'}" class="btn btn-primary pull-right">
+  									<i class="glyphicon glyphicon-plus">AgregarVenta</i>
   								</a>		
   							</div>
   							
   							<div>
-  								<a href="/curso/actualizar" th:href="@{'/curso/actualizar'}" class="btn btn-primary pull-right">
-					 				<i class="glyphicon glyphicon-plus"> ActualizarCurso </i>
+  								<a href="/venta/actualizar" th:href="@{'/venta/actualizar'}" class="btn btn-primary pull-right">
+					 				<i class="glyphicon glyphicon-plus"> ActualizarVenta</i>
 					 			</a>
   							</div>
   					</div>
@@ -41,29 +41,31 @@
   										
   										<thead>	
   											<tr>
-  												<th><span>IdCurso</span></th>
-  												<th><span>NombreCurso</span></th>
-  												<th><span>NombreProfesor</span></th>
-  												<th><span>DescripcionCurso</span></th>
-  												<th><span>FechaCreacion</span></th>
-  												<th><span>PrecioCurso</span></th>
+  												<th><span>IdVenta</span></th>
+  												<th><span>NombreCliente</span></th>
+  												<th><span>FechaVenta</span></th>
+  												<th><span>CantidadVenta</span></th>
+  												<th><span>TipoComprobante</span></th>
+  												<th><span>TotalVenta</span></th>
+  												<th><span>EstadoVenta</span></th>
   											</tr>
   										</thead>
   										
-  										<tbody th:each="curso : ${cursos}">
+  										<tbody th:each="venta : ${ventas}">
   											<tr>
-  												<td th:text="${curso.idCurso}"></td>
-  												<td th:text="${curso.nombreCurso}"></td>
-  												<td th:text="${curso.nombreProfesor}"></td>
-												<td th:text="${curso.descripcionCurso}"></td>
-												<td th:text="${curso.fechaCreacion}"></td>
-												<td th:text="${curso.precioCurso}"></td>
+  												<td th:text="${venta.idVenta}"></td>
+  												<td th:text="${venta.nombreCliente}"></td>
+  												<td th:text="${venta.fechaVenta}"></td>
+												<td th:text="${venta.cantidadVenta}"></td>
+												<td th:text="${venta.tipoComprobante}"></td>
+												<td th:text="${venta.totalVenta}"></td>
+												<td th:text="${venta.estadoVenta}"></td>
 												
 												<td>
-													<form method="post" action="/curso/delete/${curso.idCurso}" th:action="@{'/curso/delete/' + ${curso.idCurso}}">
-													<input type="hidden" name="userId" th:value="${curso.idCurso}"/>
+													<form method="post" action="/venta/delete/${venta.idVenta}" th:action="@{'/venta/delete/' + ${venta.idVenta}}">
+													<input type="hidden" name="ventaId" th:value="${venta.idVenta}"/>
 													<input type="hidden" name="_method" value="Borrar"/>
-													<button type="submit" name="deleteCurso" class="glyphicon glypicon-trash">Borrar</button>
+													<button type="submit" name="deleteVenta" class="glyphicon glypicon-trash">Borrar</button>
 													</form>
 												</td>
   											</tr>
